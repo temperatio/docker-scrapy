@@ -1,4 +1,4 @@
-# scrapy-development-docker
+# docker-scrapy
 Web Scraping Development Docker Container
 
 This container includes python, selenium, beautifulsoup, scrapy, [scrapyjs] (https://github.com/scrapinghub/scrapy-splash), boto3
