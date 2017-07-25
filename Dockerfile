@@ -1,27 +1,14 @@
-############################################################
-# Dockerfile for a Scrapy development environment
-# Based on Ubuntu Image
-############################################################
+FROM alpine:3.1
+#RUN  echo "http://nl.alpinelinux.org/alpine/edge/testing">>/etc/apk/repositories
+RUN apk update
+RUN apk add python-dev curl libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev py-pip
 
-FROM ubuntu
-MAINTAINER NeuralFoundry <neuralfoundry.com>
-
-RUN echo deb http://archive.ubuntu.com/ubuntu precise universe >> /etc/apt/sources.list
-RUN apt-get update
-
-## Python Family
-RUN apt-get install -qy python python-dev python-distribute python-pip ipython
-
-## Selenium 
-RUN apt-get install -qy firefox xvfb 
-RUN pip install selenium pyvirtualdisplay
-
-## AWS Python SDK
-RUN pip install boto3
-
-## Scraping
-RUN pip install beautifulsoup4 requests 
-RUN apt-get install -qy libffi-dev libxml2-dev libxslt-dev lib32z1-dev libssl-dev
-
-## Scrapy
-RUN pip install lxml scrapy scrapyjs
+RUN pip install IPython==5.0 --user
+RUN pip install lxml
+RUN pip install beautifulsoup4 requests
+RUN pip install scrapy
+RUN pip install scrapyjs
+#CMD ["sh"]
+VOLUME ["/crawlers"]
+WORKDIR /crawlers
+ENTRYPOINT ["/usr/bin/scrapy"]
