@@ -1,14 +1,12 @@
-FROM alpine:3.1
-#RUN  echo "http://nl.alpinelinux.org/alpine/edge/testing">>/etc/apk/repositories
-RUN apk update
-RUN apk add python-dev curl libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev py-pip
+FROM ubuntu:latest
 
-RUN pip install IPython==5.0 --user
-RUN pip install lxml
-RUN pip install beautifulsoup4 requests
-RUN pip install scrapy
-RUN pip install scrapyjs
-#CMD ["sh"]
+RUN apt-get update
+# RUN apt-get install -y apt-utils
+RUN apt-get install -y python-dev curl libxml2-dev libxslt-dev libffi-dev gcc musl-dev python-pip imagemagick
+
+RUN pip install --upgrade pip
+RUN pip install IPython lxml beautifulsoup4 requests scrapy scrapyjs Pillow
+
 VOLUME ["/crawlers"]
 WORKDIR /crawlers
-ENTRYPOINT ["/usr/bin/scrapy"]
+ENTRYPOINT ["/bin/bash"]
