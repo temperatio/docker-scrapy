@@ -1,0 +1,8 @@
+IPython
+lxml
+beautifulsoup4
+requests
+scrapy
+scrapyjs
+scrapy-splash
+Pillow
